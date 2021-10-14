@@ -175,5 +175,4 @@ def optimistic_greedy_policy(n:int, iteration:int, init_estimate: float = 10) ->
 
 
 if __name__ == "__main__":
-    temp = [10, 2, 10]
-    print(np.argmax(temp))
+    pass
