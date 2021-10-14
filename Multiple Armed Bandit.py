@@ -127,7 +127,7 @@ def greedy_policy(n:int, iteration:int, explore_times:int) -> Bandit:
     return bandit
 
 def epsilon_greedy_policy(n:int, iteration:int, epsilon:float) -> Bandit:
-    """Generate a bandit with n arms and spin greedily with probability.
+    """Generate a bandit with n arms and spin greedily with probability epsilon.
     
     Parameters
     ----------
@@ -152,7 +152,28 @@ def epsilon_greedy_policy(n:int, iteration:int, epsilon:float) -> Bandit:
     print_bandit_stats(bandit)
     return bandit
 
+def optimistic_greedy_policy(n:int, iteration:int, init_estimate: float = 10) -> Bandit:
+    """Generate a bandit with n arms with some init_estimate and spin greedily.
+
+    Parameters
+    ----------
+    n : int
+        the number of arms.
+    
+    iteration : int
+        number of times to spin.
+
+    init_estimate : float
+        initial value for all arms' estimation.
+    """
+    bandit:Bandit = Bandit(n)
+    bandit.average_reward = [init_estimate for _ in range(n)]
+    for _ in range(1000):
+        bandit.spin(np.argmax(bandit.average_reward))
+    print_bandit_stats(bandit)
+    return bandit
+
 
 if __name__ == "__main__":
-    epsilon_greedy_policy(3, 1000, 0.2)
-    greedy_policy(3, 1000, 30)
+    temp = [10, 2, 10]
+    print(np.argmax(temp))
