@@ -53,7 +53,7 @@ class Policy:
         deno = np.sum(temp)
         actions_prob = np.zeros(self.n_action, dtype=np.float32)
         for i, h in enumerate(self.h):
-            actions_prob[i] = round(np.exp(h) / deno, 3)
+            actions_prob[i] = np.exp(h) / deno
         actions_prob /= actions_prob.sum()
         return np.random.choice(self.n_action, p=actions_prob)
 
