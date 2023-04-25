@@ -37,7 +37,7 @@ class UCBAgent:
         return action
 
     def update_action_value(self, idx: int, reward: float) -> None:
-        self.actions_value[idx] = self.actions_value[idx] + (reward  -
+        self.actions_value[idx] = self.actions_value[idx] + (reward -
             self.actions_value[idx]) / self.pulls_count[idx]
         self.average_reward = self.average_reward + (reward -
             self.average_reward) / self.total_pull_count
